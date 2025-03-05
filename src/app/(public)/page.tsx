@@ -1,6 +1,7 @@
+import SingIn from "./singIn/page";
 
 export default function Home() {
   return (
-    <h1>Page</h1>
+    <SingIn />
   );
 }
