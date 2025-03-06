@@ -42,7 +42,7 @@ export default function SingUp() {
 
   return (
     <div className="flex items-center justify-center content-center w-full h-full">
-      <div className="flex flex-row justify-center items-center content-center w-full md:max-w-[60dvw] min-h-[70dvh] m-2 p-4 border-[1px] border-black drop-shadow-xl drop-shadow-white bg-white">
+      <div className="flex flex-row justify-center items-center content-center w-full md:max-w-[60dvw] min-h-[70dvh] h-[70dvh] m-2 p-4 xl:p-0 border-[1px] border-black drop-shadow-xl drop-shadow-white bg-white">
         <div className="w-full h-full relative hidden xl:block">
           <Image src="/singinbackgroud.png" alt="singin" fill />
         </div>
@@ -50,7 +50,7 @@ export default function SingUp() {
           <Form {...methods}>
             <Title size="xl">Register new user</Title>
             <form
-              className="flex flex-col gap-1 xl:pl-4 h-max w-full"
+              className="flex flex-col gap-1 p-0 xl:p-4 h-max w-full"
               onSubmit={methods.handleSubmit(submitSingUp)}
             >
               <FormField
