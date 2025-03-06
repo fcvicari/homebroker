@@ -61,12 +61,12 @@ export default function SingIn() {
 
   return (
     <div className="flex items-center justify-center content-center w-full h-full">
-      <div className="flex flex-row justify-center items-center content-center w-full md:max-w-[60dvw] h-[70dvh] m-2 border-[1px] border-black drop-shadow-xl drop-shadow-white bg-white">
+      <div className="flex flex-row justify-center items-center content-center w-full md:max-w-[60dvw] min-h-[70dvh] m-2 p-4 border-[1px] border-black drop-shadow-xl drop-shadow-white bg-white">
         <div className="flex flex-col w-full h-full justify-center content-center items-center gap-8">
           <Form {...methods}>
             <Title size="xl">Welcome!</Title>
             <form
-              className="flex flex-col gap-1 p-6 h-max w-full"
+              className="flex flex-col gap-1 xl:pl-4 h-max w-full"
               onSubmit={methods.handleSubmit(submitSingIn)}
             >
               <FormField
