@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/_components/ui/button";
+import { ButtonLink } from "@/_components/ui/buttonLink";
 import {
   Form,
   FormControl,
@@ -15,7 +16,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -110,9 +110,11 @@ export default function SingIn() {
               </Button>
             </form>
           </Form>
-          <Link href="/singup" className="text-blue-700">
-            Don&lsquo;t have an account?
-          </Link>
+          <ButtonLink
+            url="/singup"
+            label="Don&lsquo;t have an account?"
+            variant="link"
+          />
           <span>I forgot my password</span>
         </div>
         <div className="w-full h-full relative hidden xl:block">
