@@ -1,0 +1,11 @@
+### NextAuth Configuration
+# Base URL of the application for authentication
+NEXTAUTH_URL=<URL>
+
+# Secret key used by NextAuth for token encryption
+# Generate a secure key for production
+NEXTAUTH_SECRET=YOUR_SECRET_HERE
+
+### Backend Configuration
+# Base URL of the backend API
+BACKEND_URL=<URL_BACKEND>

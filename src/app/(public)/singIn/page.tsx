@@ -13,8 +13,10 @@ import { InputPassword } from "@/_components/ui/inputPass";
 import { Title } from "@/_components/ui/title";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -34,11 +36,26 @@ export default function SingIn() {
       password: "",
     },
   });
+  const router = useRouter();
   const [isPending, startTransaction] = useTransition();
 
   function submitSingIn({ email, password }: singInFormDate) {
     startTransaction(async () => {
-      console.log(email, password);
+      const resp = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (resp?.ok) {
+        router.push("/restrict");
+      } else {
+        if (resp?.error) {
+          console.log(resp.error);
+        } else {
+          console.log("There was a problem with your request.");
+        }
+      }
     });
   }
 
