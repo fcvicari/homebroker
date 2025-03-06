@@ -14,6 +14,7 @@ import { Title } from "@/_components/ui/title";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -43,12 +44,12 @@ export default function SingIn() {
 
   return (
     <div className="flex items-center justify-center content-center w-full h-full">
-      <div className="flex flex-row justify-center items-center content-center w-full md:max-w-[60dvw] min-h-[70dvh] gap-6">
-        <div className="flex flex-col gap-8 w-full xl:w-1/2 min-h-max">
+      <div className="flex flex-row justify-center items-center content-center w-full md:max-w-[60dvw] h-[70dvh] m-2 border-[1px] border-black drop-shadow-xl drop-shadow-white bg-white">
+        <div className="flex flex-col w-full h-full justify-center content-center items-center gap-8">
           <Form {...methods}>
             <Title size="xl">Welcome!</Title>
             <form
-              className="flex flex-col gap-1"
+              className="flex flex-col gap-1 p-6 h-max w-full"
               onSubmit={methods.handleSubmit(submitSingIn)}
             >
               <FormField
@@ -87,14 +88,18 @@ export default function SingIn() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Sing in</Button>
+              <Button className="mt-4" type="submit">
+                Sing in
+              </Button>
             </form>
           </Form>
-          <span>Don&lsquo;t have an account?</span>
+          <Link href="/singup" className="text-blue-700">
+            Don&lsquo;t have an account?
+          </Link>
+          <span>I forgot my password</span>
         </div>
-        <div className="w-1/2 min-h-max relative hidden xl:block">
+        <div className="w-full h-full relative hidden xl:block">
           <Image src="/singinbackgroud.png" alt="singin" fill />
-          <span>teste</span>
         </div>
       </div>
     </div>
