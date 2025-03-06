@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/_components/ui/button";
+import { ButtonLink } from "@/_components/ui/buttonLink";
 import {
   Form,
   FormControl,
@@ -16,9 +17,8 @@ import {
   createNewUserSchema,
 } from "@/_lib/schema/newUser";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Mail } from "lucide-react";
+import { ArrowLeft, Mail } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
@@ -132,7 +132,12 @@ export default function SingUp() {
               </Button>
             </form>
           </Form>
-          <Link href="/singIn">Back to login</Link>
+          <ButtonLink
+            variant="link"
+            url="/singIn"
+            label="Back to login"
+            icon={ArrowLeft}
+          />
         </div>
       </div>
     </div>
