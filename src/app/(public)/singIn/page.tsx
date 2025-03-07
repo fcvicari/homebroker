@@ -12,6 +12,7 @@ import {
 import { Input } from "@/_components/ui/input";
 import { InputPassword } from "@/_components/ui/inputPass";
 import { Title } from "@/_components/ui/title";
+import { useAlertHook } from "@/_hook/alertHook";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
@@ -38,6 +39,7 @@ export default function SingIn() {
   });
   const router = useRouter();
   const [isPending, startTransaction] = useTransition();
+  const { openError } = useAlertHook();
 
   function submitSingIn({ email, password }: singInFormDate) {
     startTransaction(async () => {
@@ -51,9 +53,9 @@ export default function SingIn() {
         router.push("/restrict");
       } else {
         if (resp?.error) {
-          console.log(resp.error);
+          openError(resp.error);
         } else {
-          console.log("There was a problem with your request.");
+          openError("There was a problem with your request.");
         }
       }
     });
