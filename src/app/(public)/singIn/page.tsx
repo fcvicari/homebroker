@@ -107,7 +107,12 @@ export default function SingIn() {
                   </FormItem>
                 )}
               />
-              <Button className="mt-4" type="submit">
+              <Button
+                className="mt-4"
+                type="submit"
+                isPending={isPending}
+                disabled={isPending}
+              >
                 Sing in
               </Button>
             </form>
