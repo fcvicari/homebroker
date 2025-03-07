@@ -1,3 +1,4 @@
+import { AlertError } from "@/_components/ui/alert-error";
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${robotoMono.variable} antialiased h-dvh`}
       >
-        {children}
+        <AlertError>{children}</AlertError>
       </body>
     </html>
   );
