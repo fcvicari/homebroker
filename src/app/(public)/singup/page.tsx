@@ -48,6 +48,11 @@ export default function SingUp() {
     }
 
     if (data) {
+      openError(
+        "Activation instructions have been sent to your email.",
+        "Registration Successful!",
+        "success"
+      );
       router.push("/singIn");
     }
   }
