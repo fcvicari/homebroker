@@ -12,6 +12,8 @@ import {
 import { Input } from "@/_components/ui/input";
 import { InputPassword } from "@/_components/ui/inputPass";
 import { Title } from "@/_components/ui/title";
+import { useAlertHook } from "@/_hook/alertHook";
+import { actionSingUp } from "@/_lib/actions/singup";
 import {
   createNewUserFormDate,
   createNewUserSchema,
@@ -19,10 +21,15 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Mail } from "lucide-react";
 import Image from "next/image";
-import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useServerAction } from "zsa-react";
 
 export default function SingUp() {
+  const { isPending, execute } = useServerAction(actionSingUp);
+  const router = useRouter();
+  const { openError } = useAlertHook();
+
   const methods = useForm<createNewUserFormDate>({
     resolver: zodResolver(createNewUserSchema),
     defaultValues: {
@@ -32,12 +39,17 @@ export default function SingUp() {
       checkPassword: "",
     },
   });
-  const [isPending, startTransaction] = useTransition();
 
-  function submitSingUp({ name, email, password }: createNewUserFormDate) {
-    startTransaction(async () => {
-      console.log("Singup:", name, email, password);
-    });
+  async function submitSingUp(values: createNewUserFormDate) {
+    const [data, error] = await execute(values);
+
+    if (error) {
+      openError(error.message);
+    }
+
+    if (data) {
+      router.push("/singIn");
+    }
   }
 
   return (
@@ -127,7 +139,7 @@ export default function SingUp() {
                 )}
               />
 
-              <Button type="submit" disabled={isPending}>
+              <Button type="submit" isPending={isPending} disabled={isPending}>
                 Register
               </Button>
             </form>
