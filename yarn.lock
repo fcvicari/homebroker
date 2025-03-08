@@ -3900,3 +3900,29 @@ zod@^3.24.2:
   version "3.24.2"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.2.tgz#8efa74126287c675e92f46871cfc8d15c34372b3"
   integrity sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==
+
+zsa-openapi@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/zsa-openapi/-/zsa-openapi-0.3.1.tgz#c894ea4aeebb20d7e9b40b44cf3803a82b3cf702"
+  integrity sha512-nK8GzDx3oJ2wmgrC4upNvPF/RQVE2JhETEY9Ozygtb4mH/G4+Ypyy6OvChmTfYrTdIhudvggTfA6PqoBaGhnMA==
+  dependencies:
+    zsa "*"
+
+zsa-react-query@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/zsa-react-query/-/zsa-react-query-0.2.1.tgz#9389ceed17b47a88a78a43eea2d2c5211ff1504e"
+  integrity sha512-/2IbJFGOneghpNlqd+VdNXNUzxYdPKIyGADcWGFS8gbUIBNyzdkZqcUqHxeU9Qwu9t7I8jbQHGkpV775kbq3Ng==
+  dependencies:
+    zsa "*"
+
+zsa-react@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/zsa-react/-/zsa-react-0.2.3.tgz#cbeb9ce4adce731735f586fb3b7a8e59cecd0825"
+  integrity sha512-THCoIIhtEU3jXTrNBM/PBc0PyHCekizSGEc+fg0LGo1NM1J02LFQN7ICR948X25IjtkZdvxUZmT0+M73GG8eEw==
+  dependencies:
+    zsa "*"
+
+zsa@*, zsa@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/zsa/-/zsa-0.6.0.tgz#82800d2b177c82fde3129b0e54bf510b87fbfbb7"
+  integrity sha512-Pq3X4T0dna5s4dIevYOJiRdM3DUHRvEHS2q1AH/bvkPSh640u+9veVj5zmzmbL0A6cpXMYagwKsR4keGOc0jPQ==
