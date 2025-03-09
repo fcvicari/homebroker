@@ -1,6 +1,6 @@
 import AuthProvider from "@/_context/authProvider";
 import Image from "next/image";
-import { UserProps } from "./_components/userProps";
+import { Profile } from "./_components/profile";
 
 export default function RestrictLayout({
   children,
@@ -12,7 +12,7 @@ export default function RestrictLayout({
       <div className="flex flex-col px-2 md:px-20 justify-between gap-4 h-full">
         <header className="flex justify-between items-center border-b-2 p-3 h-20">
           <Image src="/logo.png" width={240} height={240} alt="HomeBroker" />
-          <UserProps />
+          <Profile />
         </header>
         <body className="">{children}</body>
         <footer className="flex flex-col w-full justify-center text-[0.65rem] sm:text-xs text-center border-t-2 p-3">
