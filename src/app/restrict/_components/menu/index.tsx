@@ -6,9 +6,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/_components/ui/sidebar";
-import { Calendar, Home, Inbox, Search, Settings, Wallet } from "lucide-react";
-import Link from "next/link";
+import { Banknote, BarChart, Home, List, Target } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { MenuTrigger } from "./menuTrigger";
 
 export function MenuApp() {
@@ -21,43 +22,44 @@ export function MenuApp() {
     {
       title: "Dividends",
       url: "/restrict/dividends",
-      icon: Inbox,
+      icon: Banknote,
     },
     {
       title: "Transactions",
       url: "/restrict/transactions",
-      icon: Calendar,
+      icon: List,
     },
     {
       title: "Analysis",
       url: "/restrict/analysis",
-      icon: Search,
+      icon: BarChart,
     },
     {
       title: "Goals",
       url: "/restrict/goals",
-      icon: Settings,
+      icon: Target,
     },
   ];
+  const { isMobile, setOpenMobile } = useSidebar();
+  const route = useRouter();
+
+  function handleMenuButton(url: string) {
+    route.push(url);
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  }
 
   return (
     <Sidebar collapsible="icon" className="relative min-h-min h-full">
       <SidebarGroupContent>
         <div className="flex flex-row px-2">
           <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => alert("clicou na carteira")}>
-                <Wallet />
-                <span>Carteira</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
-                  <Link href={item.url}>
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </Link>
+                <SidebarMenuButton onClick={() => handleMenuButton(item.url)}>
+                  <item.icon />
+                  <span>{item.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}

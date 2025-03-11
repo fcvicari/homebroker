@@ -7,7 +7,11 @@ interface MenuTriggerProps {
 }
 
 export function MenuTrigger({ hidden }: MenuTriggerProps) {
-  const { open } = useSidebar();
+  const { open, isMobile } = useSidebar();
 
-  return <SidebarTrigger className={`${open === hidden ? "hidden" : ""}`} />;
+  return (
+    <SidebarTrigger
+      className={`${open === hidden && !isMobile ? "hidden" : ""}`}
+    />
+  );
 }
