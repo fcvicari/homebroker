@@ -43,8 +43,7 @@ export function ProfileForm({ opened = false, setOpened }: ProfileFormProps) {
             </Avatar>
             <div className="flex flex-col justify-start text-left w-full">
               <span className="text-primary text-base">
-                {" "}
-                {session.user.name}{" "}
+                {session.user.name}
               </span>
               <span className="text-xs"> {session.user.email} </span>
             </div>
