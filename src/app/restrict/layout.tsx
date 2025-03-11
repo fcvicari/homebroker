@@ -21,13 +21,7 @@ export default function RestrictLayout({
           <div className="flex flex-row w-full h-full gap-1">
             <MenuApp />
             <MenuTrigger hidden={true} />
-            <main className="flex flex-col w-full">
-              {children}
-              {children}
-              {children}
-              {children}
-              {children}
-            </main>
+            <main className="flex flex-col w-full">{children}</main>
           </div>
         </SidebarProvider>
         <footer className="flex flex-col w-full justify-center text-[0.65rem] sm:text-xs text-center border-t-2 p-3">
