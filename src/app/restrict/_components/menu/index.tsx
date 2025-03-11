@@ -8,33 +8,34 @@ import {
   SidebarMenuItem,
 } from "@/_components/ui/sidebar";
 import { Calendar, Home, Inbox, Search, Settings, Wallet } from "lucide-react";
+import Link from "next/link";
 import { MenuTrigger } from "./menuTrigger";
 
 export function MenuApp() {
   const items = [
     {
-      title: "Home",
-      url: "#",
+      title: "Dashboard",
+      url: "/restrict",
       icon: Home,
     },
     {
-      title: "Inbox",
-      url: "#",
+      title: "Dividends",
+      url: "/restrict/dividends",
       icon: Inbox,
     },
     {
-      title: "Calendar",
-      url: "#",
+      title: "Transactions",
+      url: "/restrict/transactions",
       icon: Calendar,
     },
     {
-      title: "Search",
-      url: "#",
+      title: "Analysis",
+      url: "/restrict/analysis",
       icon: Search,
     },
     {
-      title: "Settings",
-      url: "#",
+      title: "Goals",
+      url: "/restrict/goals",
       icon: Settings,
     },
   ];
@@ -52,9 +53,11 @@ export function MenuApp() {
             </SidebarMenuItem>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton>
-                  <item.icon />
-                  <span>{item.title}</span>
+                <SidebarMenuButton asChild>
+                  <Link href={item.url}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
