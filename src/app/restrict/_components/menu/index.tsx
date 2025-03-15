@@ -6,11 +6,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from "@/_components/ui/sidebar";
 import { Banknote, BarChart, Home, List, Target } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { MenuTrigger } from "./menuTrigger";
 
 export function MenuApp() {
   const items = [
@@ -40,7 +40,7 @@ export function MenuApp() {
       icon: Target,
     },
   ];
-  const { isMobile, setOpenMobile } = useSidebar();
+  const { isMobile, open, openMobile, setOpenMobile } = useSidebar();
   const route = useRouter();
 
   function handleMenuButton(url: string) {
@@ -51,20 +51,29 @@ export function MenuApp() {
   }
 
   return (
-    <Sidebar collapsible="icon" className="relative min-h-min h-full">
+    <Sidebar
+      collapsible="icon"
+      className="relative min-h-min h-full justify-center"
+    >
+      {((isMobile && !openMobile) || (!isMobile && !open)) && (
+        <SidebarTrigger className="w-full" />
+      )}
       <SidebarGroupContent>
-        <div className="flex flex-row px-2">
+        <div className="flex flex-row px-2 w-full">
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton onClick={() => handleMenuButton(item.url)}>
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  onClick={() => handleMenuButton(item.url)}
+                >
                   <item.icon />
                   <span>{item.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
-          <MenuTrigger hidden={false} />
+          {!isMobile && open && <SidebarTrigger />}
         </div>
       </SidebarGroupContent>
     </Sidebar>
