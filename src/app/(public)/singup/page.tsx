@@ -12,7 +12,7 @@ import {
 import { Input } from "@/_components/ui/input";
 import { InputPassword } from "@/_components/ui/inputPass";
 import { Title } from "@/_components/ui/title";
-import { useAlertHook } from "@/_hook/alertHook";
+import { useAlertHook } from "@/_hooks/alert_hook";
 import { actionSingUp } from "@/_lib/actions/singup";
 import {
   createNewUserFormDate,
