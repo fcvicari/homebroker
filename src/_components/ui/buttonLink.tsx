@@ -8,6 +8,7 @@ import { Button } from "./button";
 interface ButtonLinkProps {
   label: string;
   url: string;
+  disabled?: boolean;
   icon?: ComponentType<LucideProps>;
   variant?: "default" | "link";
 }
@@ -15,13 +16,19 @@ interface ButtonLinkProps {
 export function ButtonLink({
   label,
   url,
+  disabled = false,
   variant = "default",
   icon: Icon,
 }: ButtonLinkProps) {
   const router = useRouter();
 
   return (
-    <Button variant={variant} size="default" onClick={() => router.push(url)}>
+    <Button
+      variant={variant}
+      size="default"
+      onClick={() => router.push(url)}
+      disabled={disabled}
+    >
       {Icon && (
         <Icon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
       )}

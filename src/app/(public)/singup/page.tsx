@@ -150,6 +150,7 @@ export default function SingUp() {
             </form>
           </Form>
           <ButtonLink
+            disabled={isPending}
             variant="link"
             url="/singIn"
             label="Back to login"
