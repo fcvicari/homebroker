@@ -48,7 +48,24 @@ export const options: NextAuthOptions = {
     error: "/",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update" && session?.user) {
+        token.id = session.user.id ?? token.id;
+        token.email = session.user.email ?? token.email;
+        token.image = session.user.image ?? token.image;
+        token.name = session.user.name ?? token.name;
+        token.wallet = session.user.wallet ?? token.wallet;
+        token.accessToken = session.user.accessToken ?? token.accessToken;
+      }
+
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+        token.wallet = user.wallet;
+        token.accessToken = user.accessToken;
+      }      
+
       const jwtReturn = {
         ...token,
         ...user,
@@ -58,8 +75,15 @@ export const options: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-      session.user = token as any;
+
+      session.user = {
+        id: token.id as string,
+        name: token.name as string,
+        email: token.email as string,
+        image: token.image as string,
+        wallet: token.wallet as string,
+        accessToken: token.accessToken as string,
+      };
 
       return session;
     },
