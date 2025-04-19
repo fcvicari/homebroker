@@ -1,20 +1,47 @@
-export function WalletResume() {
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import { AddWallet } from "@/app/restrict/_components/addWallet";
+import { Wallet } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { WalletList } from "../walletList.tsx";
+
+export async function WalletResume() {
+  const session = await getServerSession(options);
+  if (!session) return null;
+
+  let userWallet = undefined;
+  if (session.user.wallet) {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_BACKEND_URL + `/wallet/${session.user.wallet}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.user.accessToken}`,
+        },
+        cache: "no-store",
+      }
+    );
+
+    userWallet = await response.json();
+  }
+
+  if (!userWallet) {
+    return (
+      <span className="flex flex-col md:flex-row text-xs gap-2 lg:text-sm font-bold p-3 md:p-6 items-end md:items-center md:w-full justify-end">
+        {!userWallet && <AddWallet />}
+      </span>
+    );
+  }
+
   return (
-    <div className="flex flex-row border-[1px] lg:border-none border-accent-foreground items-center justify-between p-2 px-4 bg-white w-full lg:max-w-96 shadow-sm lg:shadow-none">
-      <div className="flex flex-col h-full max-w-2xl text-xl gap-2 justify-between items-center bg-white">
-        <span>Carteira do Fernando</span>
-        <span className="text-sm font-bold">Adicionar</span>
+    <WalletList>
+      <div className="flex flex-col p-2 md:p-4 justify-center md:w-full items-center">
+        <span className="flex flex-col md:flex-row text-xs gap-2 lg:text-sm font-bold items-center">
+          <Wallet className="text-slate-400" />
+          {userWallet.name.toUpperCase()}
+        </span>
+        <span className="text-sm opacity-50">Click here to switch wallet</span>
       </div>
-      <div className="flex flex-col justify-between">
-        <div className="flex flex-col w-full justify-end items-end h-full">
-          <span className="text-xs">Assets:</span>
-          <span className="text-sm font-bold">$ 99.999.999,99</span>
-        </div>
-        <div className="flex flex-col w-full justify-end items-end h-full">
-          <span className="text-xs">Dividends:</span>
-          <span className="text-sm font-bold">$ 99.999.999,99</span>
-        </div>
-      </div>
-    </div>
+    </WalletList>
   );
 }

@@ -15,7 +15,7 @@ export const options: NextAuthOptions = {
           email: credentials?.email,
         };
 
-        const resp = await fetch(process.env.BACKEND_URL + "/singin", {
+        const resp = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/singin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

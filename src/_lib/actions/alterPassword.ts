@@ -12,7 +12,7 @@ export const actionAlterPassword = createServerAction()
     const session = await getServerSession(options)
     if (!session) return null
 
-    await fetch(process.env.BACKEND_URL + `/user/${session.user.id}`, {
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/user/${session.user.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
