@@ -7,7 +7,7 @@ import { createNewUserSchema } from "../schema/newUser";
 export const actionSingUp = createServerAction()
   .input(createNewUserSchema)
   .handler(async ({ input: { name, email, password } }) => {
-    const response = await fetch(process.env.BACKEND_URL + "/singup", {
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/singup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
